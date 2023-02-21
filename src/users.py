@@ -1,14 +1,48 @@
+# import firebase_admin
+# from firebase_admin import credentials
+# from firebase_admin import auth
+
+# d = {
+#   "type": "service_account",
+#   "project_id": "evaint-rpa",
+#   "private_key_id": "cab9fb6b8dd5064c9d1b9c067e695842dafb37d5",
+#   "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQClIC7pakukv95h\nhceqjmeDKe81k/lmHYtL4c6d79ntoh05dOaauG/b+e0tK1GUjxTA1FgSNHdshXua\nQiGNOSMms56vDPqGTMWugTPZ91S/76YWQkX6C0ckOjJcxDhIBapOlZQCGZrXTUvl\ncmZGoud+mjDiLtXd6C/nRZayQ5GdyfFV3riJmWfMI81oiWQyPeOyhHMVW3rWLQbx\naFighrdLmqhXtFkFgnx/UbeMhAYwwOoGeZnqfignykrZrzBNhB2vrMQz6/mqpj/x\nuNVoJuFWt4PJE9qiRDfP14O9VRTkv6lVAfhHI+s19PuQPFiSnmO/nc+NiNAs96pU\ny9lBeNOJAgMBAAECggEAFeZy0lpatfsMj3qixKgmamsBYuXBSh3Y/7NvJ9tL2AyM\nO7aZbyPPEinPnxIDu+ROKFUBaUi0HhyGDCuBL63IT7W68hSSlYVRIpfYPKxk/R/X\ns1QO297rDI77ZvpPTJ4TvGByROUIeE20JzZJAk1QzqW8ngMAMnI9CDtehT4Y7ghH\nszloJpsZRWilViCMpcPrEzNeAAzoDNUPjSAZ3cf65z+B3eGAokUxOznTHTk0ibby\ntl9W5jBWTL7Xqorra4vSKz/sHyODS6kKLyDXpXe9mpIol+dcggpqW5Ep/4jlZUfg\nlMSE4Q+Byy7DM75jMhoCLNW68RUQmHgt4hm9fstmQQKBgQDk9n1/nVTJVPbUi/nJ\n0RJE3/0DxNBLNn+2UAH7Tcru0FJ2n7eQmT3ceBeuTFZDMe7GD7bUaoslr0SoYxh5\nTl/ypIMAv2eN1lmvCKW6QLTW/jhnTINMZtkMTLL7BqFeIhyagyqgss7xb0rmwo3W\nl7GMmdSyTj0BA+Vv3IqBS6kcpQKBgQC4n+gh8x+DPJFh+9e9ELCaQPZgQI3GXmC6\nPb5HtWdLJ68gekYaqR8tJtPTjr+O1m1mmu1DZKPTyU5AhdPq/u2SY8/ktH+jGzXk\nbrMCdr/Sb5gciyykGna0HOXuXNiPlVxRPshU8Os3bdHUpCp5e8X0hCdeUCSHfLFw\nAYOupvhyFQKBgB+45vpfWffrBae9HQaRKO7R+cQj6JgDHP6tZxjiVlNwGXzF9DDc\nim2ZVe6YNPtqV6KpWrNjb5PxDJon4KQt7602jc/0tOw53oMZt5xuip+e6UGmoCpd\ntYS2u7V73a+lGkFuGuHY5EMfIEmIew5YRgks5wMtQ9Z4K7mr3KS9TtjhAoGBAI8P\nodHE0dNguIsDmk2vxBkTY5Z8Dx/6e9t1AqAQSiUrcAGrne0Exdq37oZNY9QsBgPu\n4xFIx8XRhGhtCyRaO/8mhq6CyzC5Yg5LVT0AhW1r+aOMmJ/kvbydc/I7UbgZFbsC\n+jsPoESIPYMXXq5aIa9yRAtJ8LRoBBp1ofNRAM1tAoGBAJKLBEGoQikaaKfXtlzZ\nwNgs3fJmCB/vu9hfzWVwR5aq6XuIP68Lp4WZMZYVTE2O4lJrGpZJsr7r9OYD4OBa\nn34hR/RftpaPl3aQi883dsSKDUw3NJgu+ymZaVCTPsXUvbJlWcuQDg/MDLcGDMfE\n8NHEihLN2TOEfcXnZ0klkrEJ\n-----END PRIVATE KEY-----\n",
+#   "client_email": "firebase-adminsdk-9wacj@evaint-rpa.iam.gserviceaccount.com",
+#   "client_id": "101885372779011267534",
+#   "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+#   "token_uri": "https://oauth2.googleapis.com/token",
+#   "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+#   "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-9wacj%40evaint-rpa.iam.gserviceaccount.com"
+# }
 import firebase_admin
 from firebase_admin import credentials
 from firebase_admin import auth
 import json
+import os
 
-cred = credentials.Certificate("evaint-firebase-sdk.json")
-firebase_admin.initialize_app(cred)
+d = {
+"type": "service_account",
+"project_id": "evaint-rpa",
+"private_key_id": "cab9fb6b8dd5064c9d1b9c067e695842dafb37d5",
+"private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQClIC7pakukv95h\nhceqjmeDKe81k/lmHYtL4c6d79ntoh05dOaauG/b+e0tK1GUjxTA1FgSNHdshXua\nQiGNOSMms56vDPqGTMWugTPZ91S/76YWQkX6C0ckOjJcxDhIBapOlZQCGZrXTUvl\ncmZGoud+mjDiLtXd6C/nRZayQ5GdyfFV3riJmWfMI81oiWQyPeOyhHMVW3rWLQbx\naFighrdLmqhXtFkFgnx/UbeMhAYwwOoGeZnqfignykrZrzBNhB2vrMQz6/mqpj/x\nuNVoJuFWt4PJE9qiRDfP14O9VRTkv6lVAfhHI+s19PuQPFiSnmO/nc+NiNAs96pU\ny9lBeNOJAgMBAAECggEAFeZy0lpatfsMj3qixKgmamsBYuXBSh3Y/7NvJ9tL2AyM\nO7aZbyPPEinPnxIDu+ROKFUBaUi0HhyGDCuBL63IT7W68hSSlYVRIpfYPKxk/R/X\ns1QO297rDI77ZvpPTJ4TvGByROUIeE20JzZJAk1QzqW8ngMAMnI9CDtehT4Y7ghH\nszloJpsZRWilViCMpcPrEzNeAAzoDNUPjSAZ3cf65z+B3eGAokUxOznTHTk0ibby\ntl9W5jBWTL7Xqorra4vSKz/sHyODS6kKLyDXpXe9mpIol+dcggpqW5Ep/4jlZUfg\nlMSE4Q+Byy7DM75jMhoCLNW68RUQmHgt4hm9fstmQQKBgQDk9n1/nVTJVPbUi/nJ\n0RJE3/0DxNBLNn+2UAH7Tcru0FJ2n7eQmT3ceBeuTFZDMe7GD7bUaoslr0SoYxh5\nTl/ypIMAv2eN1lmvCKW6QLTW/jhnTINMZtkMTLL7BqFeIhyagyqgss7xb0rmwo3W\nl7GMmdSyTj0BA+Vv3IqBS6kcpQKBgQC4n+gh8x+DPJFh+9e9ELCaQPZgQI3GXmC6\nPb5HtWdLJ68gekYaqR8tJtPTjr+O1m1mmu1DZKPTyU5AhdPq/u2SY8/ktH+jGzXk\nbrMCdr/Sb5gciyykGna0HOXuXNiPlVxRPshU8Os3bdHUpCp5e8X0hCdeUCSHfLFw\nAYOupvhyFQKBgB+45vpfWffrBae9HQaRKO7R+cQj6JgDHP6tZxjiVlNwGXzF9DDc\nim2ZVe6YNPtqV6KpWrNjb5PxDJon4KQt7602jc/0tOw53oMZt5xuip+e6UGmoCpd\ntYS2u7V73a+lGkFuGuHY5EMfIEmIew5YRgks5wMtQ9Z4K7mr3KS9TtjhAoGBAI8P\nodHE0dNguIsDmk2vxBkTY5Z8Dx/6e9t1AqAQSiUrcAGrne0Exdq37oZNY9QsBgPu\n4xFIx8XRhGhtCyRaO/8mhq6CyzC5Yg5LVT0AhW1r+aOMmJ/kvbydc/I7UbgZFbsC\n+jsPoESIPYMXXq5aIa9yRAtJ8LRoBBp1ofNRAM1tAoGBAJKLBEGoQikaaKfXtlzZ\nwNgs3fJmCB/vu9hfzWVwR5aq6XuIP68Lp4WZMZYVTE2O4lJrGpZJsr7r9OYD4OBa\nn34hR/RftpaPl3aQi883dsSKDUw3NJgu+ymZaVCTPsXUvbJlWcuQDg/MDLcGDMfE\n8NHEihLN2TOEfcXnZ0klkrEJ\n-----END PRIVATE KEY-----\n",
+"client_email": "firebase-adminsdk-9wacj@evaint-rpa.iam.gserviceaccount.com",
+"client_id": "101885372779011267534",
+"auth_uri": "https://accounts.google.com/o/oauth2/auth",
+"token_uri": "https://oauth2.googleapis.com/token",
+"auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+"client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-9wacj%40evaint-rpa.iam.gserviceaccount.com"
+}
 
-# Iterate through all users. This will still retrieve users in batches,
-# buffering no more than 1000 users in memory at a time.
-for user in auth.ListUsersPage().iterate_all():
-    print('User: ' + user.email)
-    print(f'User data: {auth.get_user_by_email(user.email)._data}')
-
+def myData():
+  cred = credentials.Certificate(d)
+  firebase_admin.initialize_app(cred)
+  s={'users': []}
+  # Iterate through all users. This will still retrieve users in batches,
+  # buffering no more than 1000 users in memory at a time.
+  for user in auth.list_users().iterate_all(): 
+    s['users'].append({'uid': user.uid, 'email': user.email, 'display_name': user.display_name, 'photoURL': user.photo_url})
+  
+  path = os.path.join(os.getcwd, 'users.json')
+  with open(path, 'w+') as j:
+    json.dump(s, j, indent=4)
+myData()
