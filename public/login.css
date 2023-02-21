@@ -213,7 +213,7 @@ html {
       width: 45%;
     }
 
-.google__btn {
+#google__btn {
     position: absolute;
       width: 100%;
       max-width: 400px;
@@ -233,11 +233,11 @@ html {
     box-shadow: 0 15px 30px rgba(64, 103, 230, 0.705);
     transition: 0.2s linear;
     }
-        .google__btn .fa {
+        #google__btn .fa {
           font-size: 20px;
           padding: 0 5px 0 0;
         }
-.google__btn:hover {
+#google__btn:hover {
     box-shadow: none;
 }
 
