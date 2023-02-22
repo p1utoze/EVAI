@@ -33,16 +33,15 @@ d = {
 "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-9wacj%40evaint-rpa.iam.gserviceaccount.com"
 }
 
-def myData():
-  cred = credentials.Certificate(d)
-  firebase_admin.initialize_app(cred)
-  s={'users': []}
-  # Iterate through all users. This will still retrieve users in batches,
-  # buffering no more than 1000 users in memory at a time.
-  for user in auth.list_users().iterate_all(): 
-    s['users'].append({'uid': user.uid, 'email': user.email, 'display_name': user.display_name, 'photoURL': user.photo_url})
-  
-  path = os.path.join(os.getcwd, 'users.json')
-  with open(path, 'w+') as j:
-    json.dump(s, j, indent=4)
-myData()
+cred = credentials.Certificate(d)
+firebase_admin.initialize_app(cred)
+s={'users': []}
+# Iterate through all users. This will still retrieve users in batches,
+# buffering no more than 1000 users in memory at a time.
+for user in auth.list_users().iterate_all(): 
+  s['users'].append({'uid': user.uid, 'email': user.email, 'display_name': user.display_name, 'photoURL': user.photo_url})
+
+path = os.path.join('C:/Users/Plutoz/Downloads/EVAI-main/src/user_list.json')
+with open(path, 'w+') as j:
+  json.dump(s, j, indent=4)
+j.close()
