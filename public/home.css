@@ -8,7 +8,7 @@ html{
     scroll-behavior: smooth;
 }
 body{
-    background: #080808;
+    background: #ffffff;
     color: #fff;
 }
 #header{
@@ -253,11 +253,12 @@ nav ul li a:hover::after{
     padding: 14px 50px;
     border-radius: 6px;
     text-decoration: none;
-    color: #fff;
+    color: black;
     transition: background 0.5s;
 }
 .btn:hover{
     background: rgb(76, 5, 131);
+     color: white;
 }
 
 /* ----------------contact--------------- */
@@ -269,9 +270,10 @@ nav ul li a:hover::after{
 }
 .contact-left p{
     margin-top: 30px;
+    color: black;
 }
 .contact-left p i{
-    color: green;
+    color: black;
     margin-right: 15px;
     font-size: 25px;
 }
@@ -282,17 +284,18 @@ nav ul li a:hover::after{
     text-decoration: none;
     font-size: 30px;
     margin-right: 15px;
-    color: #ababab;
+    color: black;
     display: inline-block;
     transition: transform 0.5s;
 }
 .social-icons a:hover{
-    color: green;
+    color: blue;
     transform: translateY(-5px);
 }
 .btn.btn2{
     display: inline-block;
-    background: green;
+    background: rgb(76, 5, 131);
+    color: white;
 }
 .contact-right form{
     width: 100%;
